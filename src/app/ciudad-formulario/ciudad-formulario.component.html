@@ -1,0 +1,14 @@
+<form (ngSubmit)="buscarCiudad()">
+    <label for="ciudad">Ingresa una ciudad:</label>
+    <input type="text" id="ciudad" [(ngModel)]="nombreCiudad" name="nombreCiudad" required>
+    <button type="submit">Buscar</button>
+</form>
+
+<div *ngIf="temperatura !== undefined">
+    <p>Temperatura: {{ temperatura }}°C</p>
+    <p>Descripción del tiempo: {{ descripcionTiempo }}</p>
+  </div>
+  <div *ngIf="temperatura === undefined">
+    <p>No se encontraron datos para la ciudad ingresada.</p>
+  </div>
+  
