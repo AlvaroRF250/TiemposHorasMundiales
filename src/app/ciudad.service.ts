@@ -1,55 +1,49 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders  } from '@angular/common/http';
-import { IpService } from './ip.service'; // Importa el servicio de IP
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { IpService } from './ip.service';
+import { Observable } from 'rxjs';
+import { map, catchError, switchMap } from 'rxjs/operators';
 
 @Injectable({
- providedIn: 'root'
+  providedIn: 'root'
 })
 export class CiudadService {
-  public ciudadInicial: string  = 'Seul'; // Inicialmente vacío
-  private apiUrl = `https://api.api-ninjas.com/v1/iplookup?address=`
-  private apiKey = 'C0eN64NgdUZyOlt044BW3g==qMVWl09FIsWRn1ij'; // Reemplaza con tu propia API key
+  public ciudadInicial: string = ''; // Inicialmente vacío
+  private apiUrl = `https://api.api-ninjas.com/v1/iplookup?address=`;
+  private apiKey = 'C0eN64NgdUZyOlt044BW3g==qMVWl09FIsWRn1ij';
 
+  constructor(private http: HttpClient, private ipService: IpService) {
+    // Obtener la ciudad inicial desde la IP al iniciar el servicio
+    this.obtenerCiudadInicialDesdeIP().subscribe((ciudad) => {
+      this.ciudadInicial = ciudad;
+    });
+  }
 
-  constructor(private http: HttpClient, private ipService: IpService) {}
+  public obtenerCiudadInicialDesdeIP(): Observable<string> {
+    return this.ipService.obtenerDireccionIp().pipe(
+      switchMap((direccionIp: string) => {
+        const url = this.apiUrl + direccionIp;
+        const headers = new HttpHeaders().set('x-api-key', this.apiKey);
+
+        return this.http.get(url, { headers }).pipe(
+          map((data: any) => {
+            const ciudad = data.city;
+            return ciudad;
+          }),
+          catchError((error) => {
+            console.error('Error al obtener la ciudad por IP:', error);
+            return '';
+          })
+        );
+      })
+    );
+  }
 
   setCiudad(ciudad: string) {
-      this.ciudadInicial = ciudad;
+    this.ciudadInicial = ciudad;
   }
 
   getCiudad() {
-      return this.ciudadInicial;
+    return this.ciudadInicial;
   }
-
-  // Nuevo m&#233;todo para obtener la ciudad inicial por IP y establecerla
-  obtenerCiudadInicialPorIP() {
-    
-    return this.ipService.obtenerDireccionIp()
-      .then(direccionIp => {
-        // Usar la dirección IP para obtener la ciudad
-        const url = this.apiUrl + direccionIp;
-
-
-        // Agregar la API key a los encabezados
-        const headers = new HttpHeaders().set('x-api-key', this.apiKey);
-        ;
-
-        // Realizar la solicitud HTTP con los encabezados
-        return this.http.get(url, { headers })
-          .toPromise()
-          .then((data: any) => {
-            // Extraer la ciudad de la respuesta JSON
-            const ciudad = data.city;
-
-            // Establecer la ciudad inicial
-            this.ciudadInicial = ciudad;
-
-            return ciudad
-          })
-          .catch(error => {
-            console.error('Error al obtener la ciudad por IP:', error);
-            // Manejar el error de la API
-          });
-      });
-}
 }

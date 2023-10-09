@@ -1,5 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Observable, of } from 'rxjs';
+import { map, catchError } from 'rxjs/operators';
+
 
 @Injectable({
   providedIn: 'root'
@@ -10,17 +13,14 @@ export class IpService {
 
   constructor(private http: HttpClient) {}
 
-  obtenerDireccionIp(): Promise<string> {
+  obtenerDireccionIp(): Observable<string> {
     return this.http.get(this.apiUrl)
-      .toPromise()
-      .then((data: any) => {
-        // Extrae la dirección IP de la respuesta JSON
-        const direccionIp = data.ip;
-        return direccionIp;
-      })
-      .catch(error => {
-        console.error('Error al obtener la dirección IP:', error);
-        return ''; // Manejar el error de la API
-      });
+      .pipe(
+        map((data: any) => data.ip),
+        catchError(error => {
+          console.error('Error al obtener la dirección IP:', error);
+          return of(''); // Manejar el error de la API y devolver un valor por defecto
+        })
+      );
   }
 }

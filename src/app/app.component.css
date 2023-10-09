@@ -1,0 +1,46 @@
+/* Estilos para la pantalla completa */
+.container {
+    display: flex;
+    flex-direction: column;
+    height: 95vh; /* 100% de la altura de la ventana */
+  }
+  
+  /* Estilos para la parte de arriba (clima animado) */
+  .top-section {
+    flex: 1; /* Se expandirá para llenar el espacio disponible */
+    /* Agrega aquí estilos para la animación de clima */
+  }
+  
+  /* Estilos para la parte de abajo (hora y ciudad) */
+  .bottom-section {
+    background-color: #ffffff; /* Color de fondo de la parte de abajo */
+    padding: 20px; /* Espaciado interior */
+    /* Agrega aquí estilos para la hora y la ciudad */
+  }
+
+  .clear-sky {
+    background-color: #f0f0f0; /* Color para cielo despejado */
+  }
+  
+  .few-clouds {
+    background-color: #abcdef; /* Color para pocas nubes */
+  }
+  
+  .scattered-clouds {
+    background-color: #123456; /* Color para nubes dispersas */
+  }
+  
+  /* Agrega más clases y colores según las condiciones climáticas */
+  
+  
+  @media (max-width: 768px) {
+    /* Estilos específicos para pantallas más pequeñas (diseño móvil, por ejemplo) */
+    .container {
+      flex-direction: column-reverse; /* Cambia el orden de apilamiento */
+    }
+    .top-section, .bottom-section {
+      flex: none; /* Anula la expansión */
+      width: 100%; /* Ancho completo */
+    }
+  }
+  

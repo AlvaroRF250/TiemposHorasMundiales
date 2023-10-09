@@ -13,8 +13,8 @@ export class ClimaService {
 
   constructor(private http: HttpClient) { }
 
-  obtenerClima(ciudad: string): Observable<any>{
-    const url = `https://api.openweathermap.org/data/2.5/weather?q=${ciudad}&appid=${this.apiKey}`
+  obtenerClima(ciudad: string){
+    const url = `https://api.openweathermap.org/data/2.5/weather?q=${ciudad}&appid=${this.apiKey}&lang=es`
 
     return this.http.get(url)
   }

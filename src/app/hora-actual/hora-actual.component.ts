@@ -3,7 +3,6 @@ time for a specific city using the HoraService and CiudadService. */
 import { Component } from '@angular/core';
 import { HoraService } from '../hora.service';
 import { CiudadService } from '../ciudad.service';
-import { IpService } from '../ip.service';
 
 @Component({
   selector: 'hora-actual',
@@ -15,7 +14,7 @@ export class HoraActualComponent {
   horaActual: string
   intervalo: any
 
-  constructor(private horaService: HoraService, private ciudadService: CiudadService, private ipService: IpService) {
+  constructor(private horaService: HoraService, private ciudadService: CiudadService) {
     this.horaActual = ''
   }
 
@@ -23,7 +22,7 @@ export class HoraActualComponent {
     this.actualizarHora();
     this.intervalo = setInterval(() => {
       this.actualizarHora()
-    }, 1000)
+    }, 500)
   }
   ngOnDestroy(){
     clearInterval(this.intervalo)
