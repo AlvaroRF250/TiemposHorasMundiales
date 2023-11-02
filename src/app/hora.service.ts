@@ -6,7 +6,7 @@ import { HttpClient, HttpHeaders  } from '@angular/common/http';
 })
 export class HoraService {
   private apiUrl = 'https://api.api-ninjas.com/v1/worldtime?city='; // URL para obtener la hora de cualquier ciudad
-  private apiKey = 'C0eN64NgdUZyOlt044BW3g==qMVWl09FIsWRn1ij'; // Reemplaza con tu propia API key
+  private apiKey = 'APIKEY'; // Reemplaza con tu propia API key
 
 
   constructor(private http: HttpClient) {}

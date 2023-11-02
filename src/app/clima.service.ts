@@ -9,7 +9,7 @@ import { IpService } from './ip.service'; // Importa el servicio de IP
 })
 export class ClimaService {
 
-  private apiKey = '09c98e6ed1eda2ce3a52cbb0e16efcfb'
+  private apiKey = 'APIKEY'
 
   constructor(private http: HttpClient) { }
 
