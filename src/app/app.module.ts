@@ -8,12 +8,14 @@ import { IpService } from './ip.service';
 import { AppComponent } from './app.component';
 import { HoraActualComponent } from './hora-actual/hora-actual.component';
 import { CiudadFormularioComponent } from './ciudad-formulario/ciudad-formulario.component';
+import { SueloComponent } from './suelo/suelo.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HoraActualComponent,
-    CiudadFormularioComponent
+    CiudadFormularioComponent,
+    SueloComponent
   ],
   imports: [
     BrowserModule,

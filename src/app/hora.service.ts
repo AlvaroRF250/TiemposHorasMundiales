@@ -23,9 +23,8 @@ export class HoraService {
         // Suponiendo que data.datetime contiene la hora y fecha en formato deseado
         const hora = data.hour;
         const min = data.minute;
-        const sec = data.second
 
-        const horaDeseada = `${hora}:${min}:${sec}`
+        const horaDeseada = `${hora}:${min}`
         return horaDeseada;
       })
       .catch(error => {

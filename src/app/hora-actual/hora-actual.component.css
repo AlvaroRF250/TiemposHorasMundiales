@@ -1,15 +1,12 @@
 /* Estilos para centrar el reloj */
 :host {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100%; /* Asegura que el componente ocupe toda la altura */
     text-align: center; /* Centra horizontalmente el contenido de texto */
   }
   
   /* Estilos para el reloj */
   p {
     font-size: 48px; /* Tamaño grande de fuente */
+    margin: 0;
     font-family: 'Dela Gothic One', sans-serif; /* Tipo de fuente Dela Gothic One */
   }
   

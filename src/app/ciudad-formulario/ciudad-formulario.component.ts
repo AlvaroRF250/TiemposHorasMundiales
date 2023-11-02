@@ -67,4 +67,8 @@ export class CiudadFormularioComponent implements OnInit {
     );
   }
 
+  borrarCiudad() {
+    this.nombreCiudad = '';
+  }
+
 }

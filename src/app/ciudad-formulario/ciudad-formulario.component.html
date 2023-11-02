@@ -1,9 +1,8 @@
 <div class="form-container">
   <form (ngSubmit)="buscarCiudad()">
     <div class="input-container">
-      <input type="text" id="ciudad" [(ngModel)]="nombreCiudad" name="nombreCiudad" required>
+      <input type="text" id="ciudad" placeholder="Busca una ciudad!" [(ngModel)]="nombreCiudad" name="nombreCiudad" required (keyup.enter)="borrarCiudad()">
     </div>
-    <button type="submit">Buscar</button>
   </form>
 
   <div *ngIf="temperatura !== undefined">
