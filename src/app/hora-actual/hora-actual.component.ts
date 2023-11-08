@@ -22,7 +22,7 @@ export class HoraActualComponent {
     this.actualizarHora();
     this.intervalo = setInterval(() => {
       this.actualizarHora()
-    }, 500)
+    }, 1000)
   }
   ngOnDestroy(){
     clearInterval(this.intervalo)

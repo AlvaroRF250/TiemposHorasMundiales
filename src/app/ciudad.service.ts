@@ -10,7 +10,7 @@ import { map, catchError, switchMap } from 'rxjs/operators';
 export class CiudadService {
   public ciudadInicial: string = ''; // Inicialmente vacío
   private apiUrl = `https://api.api-ninjas.com/v1/iplookup?address=`;
-  private apiKey = 'APIKEY';
+  private apiKey = 'C0eN64NgdUZyOlt044BW3g==qMVWl09FIsWRn1ij';
 
   constructor(private http: HttpClient, private ipService: IpService) {
     // Obtener la ciudad inicial desde la IP al iniciar el servicio
